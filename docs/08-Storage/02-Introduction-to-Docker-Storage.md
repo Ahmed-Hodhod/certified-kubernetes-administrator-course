@@ -14,6 +14,7 @@ In this section, we will take a look at **Docker storage**.
 
 ![class-1](../../images/class1.PNG)
 
+Docker storage drivers manage storage on the images and containers while volume drivers manage the storage on volumes.
 #### We will first discuss about Storage drivers.
 
 #### Docker Reference Docs
