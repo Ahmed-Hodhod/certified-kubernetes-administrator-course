@@ -110,7 +110,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 
 ## Virtual Cable
 
-- To create a virtual cable
+- To create a virtual cable between two interfaces (connect them together)
 ```
 $ ip link add veth-red type veth peer name veth-blue
 ```
@@ -122,7 +122,7 @@ $ ip link set veth-red netns red
 $ ip link set veth-blue netns blue
 ```
 
-- To add an IP address
+- To add an IP address to each namespace
 ```
 $ ip -n red addr add 192.168.15.1/24 dev veth-red
 
@@ -158,7 +158,7 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 $ ip -n red link del veth-red
 ```
 
-> On the host
+> On the host ( no idea what is going between the interfaces)
 ```
 # Not available
 $ arp
@@ -172,17 +172,18 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 ## Linux Bridge
 
 - Create a network namespace
+- To connect many namespaces together, we need a central bridge to connect them all together.
 
 ```
 $ ip netns add red
 
 $ ip netns add blue
 ``` 
-- To create a internal virtual bridge network, we add a new interface to the host
+- To create a internal virtual bridge network, we add a new interface to the host named `v-net-0`
 ```
 $ ip link add v-net-0 type bridge
 ```
-- Display in the host
+- Display in the host ( considered a new interface ) 
 ```
 $ ip link
 8: v-net-0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
@@ -208,7 +209,7 @@ $ ip link set veth-red-br master v-net-0
 
 $ ip link set veth-blue-br master v-net-0
 ```
-- To add an IP address
+- To add an IP address to the namespaces
 ```
 $ ip -n red addr add 192.168.15.1/24 dev veth-red
 
@@ -232,7 +233,7 @@ $ ip link set dev veth-blue-br up
 
 > On the host
 ```
-$ ping 192.168.15.1
+$ ping 192.168.15.1   (not reachable) 
 ```
 
 > On the ns
