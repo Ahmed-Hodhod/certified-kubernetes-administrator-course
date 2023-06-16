@@ -54,7 +54,7 @@ Each entry in a route table specifies the destination network and the correspond
 ```
 $ ip route add default via 192.168.2.1
 ```
-
+- IP forwarding means that packets can be forwarded from one ethernet eth0 to another eth1
 - To check the IP forwarding is enabled on the host.
 ```
 $ cat /proc/sys/net/ipv4/ip_forward
