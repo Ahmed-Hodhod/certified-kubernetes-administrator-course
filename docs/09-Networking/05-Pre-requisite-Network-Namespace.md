@@ -3,7 +3,13 @@
   - Take me to [Lecture](https://kodekloud.com/topic/prerequsite-network-namespaces/)
 
 In this section, we will take a look at **Network Namespaces**
-
+a local host has its own interfaces and its own environment. 
+- To enable a container running on a host to have its own interfaces and route tables as if it is a host, we create naespaces.
+- Namespaces are also used to isolate the containers from their hosts.
+- In this lesson, we assume that the container is running in a namespace.
+- for the namespace, you can configure different arp and routes as well.
+- routes and arps are not inherited from the host environment.
+- 
 
 ## Process Namespace
 
