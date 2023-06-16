@@ -5,9 +5,9 @@
 In this section, we will take a look at **Switching, Routing and Gateways**
 
 ## Switching
-
+- we connect the two machines to a switch to form a netowrk.
 - To see the interface on the host system
-
+  
 ```
 $ ip link
 ```
@@ -20,6 +20,8 @@ $ ip addr
 ![net-14](../../images/net14.PNG)
 
 ## Routing
+- we use routers to connect multiple networks together.
+- router is assigned an ip on each side of the connected networks.
 
 - To see the existing routing table on the host system.
 
@@ -40,9 +42,15 @@ $ ip route add 192.168.1.0/24 via 192.168.2.1
 
 ![net-15](../../images/net15.PNG)
 
+## Route table
+Each entry in a route table specifies the destination network and the corresponding next-hop or outgoing interface to reach that network.
+
 ## Gateways
 
 - To add a default route.
+- you can add an entry in the route table to allow traffic to any external unknow network (0.0.0.0) and this router in this case is known as a gateway.
+- if you want to have a dedicated router to communicate to specific networks, you need to add the routes to them all in the route table.
+- you can have a router for internal networks and another for internet.
 ```
 $ ip route add default via 192.168.2.1
 ```
