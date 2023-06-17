@@ -14,7 +14,7 @@ $ docker run --network none nginx
 
 ## Host Network
 
-- Running docker container with `host` network
+- Running docker container with `host` network ( No network isolation, if you run an app listening on port 80, it will listen on port 80 on the host )
 
 ```
 $ docker run --network host nginx
@@ -22,7 +22,7 @@ $ docker run --network host nginx
 
 ## Bridge Network
 
-- Running docker container with `bridge` network
+- Running docker container with `bridge` network ( a bridge newtork is created of the containers -new interface docker0-  )
 
 ```
 $ docker run --network bridge nginx
