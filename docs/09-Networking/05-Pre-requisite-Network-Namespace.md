@@ -231,31 +231,31 @@ $ ip link set dev veth-red-br up
 $ ip link set dev veth-blue-br up
 ```
 
-> On the host
+> On the host (you need to add an ip to the new interface to access the new network on the host)
 ```
-$ ping 192.168.15.1   (not reachable) 
+$ ping 192.168.15.1   (not reachable)  
 ```
 
-> On the ns
+> On the ns ( 192.168.1.00 is a new network on a different host ) 
 ```
 $ ip netns exec blue ping 192.168.1.1
 Connect: Network is unreachable
 
-$ ip netns exec blue route
+$ ip netns exec blue route ( the route table of the blue interface has no awareness about other networks) 
 
-$ ip netns exec blue ip route add 192.168.1.0/24 via 192.168.15.5
+$ ip netns exec blue ip route add 192.168.1.0/24 via 192.168.15.5 (forward any external traffic to the network interface ) 
 
 # Check the IP Address of the host
 $ ip a
 
-$ ip netns exec blue ping 192.168.1.1
+$ ip netns exec blue ping 192.168.1.1  ( it is reachable now but you still did not get a response back, we need to enable the NAT on the host. so now the other network thinks that the traffic is coming from the host and not from inside the interface network ) 
 PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
 
 $ iptables -t nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE
 
-$ ip netns exec blue ping 192.168.1.1
+$ ip netns exec blue ping 192.168.1. ( reachble and we get a response ) 
 
-$ ip netns exec blue ping 8.8.8.8
+$ ip netns exec blue ping 8.8.8.8 ( not reachable from the blue interface becauze there is no route for that in the route table ) 
 
 $ ip netns exec blue route
 
@@ -264,7 +264,7 @@ $ ip netns exec blue ip route add default via 192.168.15.5
 $ ip netns exec blue ping 8.8.8.8
 ```
 
-- Adding port forwarding rule to the iptables
+- Adding port forwarding rule to the iptables ( to let other hosts and networks talk to our inteface network ) 
 
 ```
 $ iptables -t nat -A PREROUTING --dport 80 --to-destination 192.168.15.2:80 -j DNAT
