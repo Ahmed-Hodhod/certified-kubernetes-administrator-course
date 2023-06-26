@@ -112,11 +112,15 @@ Solutions to practice test - view certificates
   $ vi /etc/kubernetes/manifests/etcd.yaml
   ```
   </details>
+
+  the port and url of the component sever can be found in its manifest file.
   
 - ETCD has its own CA. The right CA must be used for the ETCD-CA file in /etc/kubernetes/manifests/kube-apiserver.yaml.
   after checking the logs from the containers, we found that a connection is rejected to the etcd server and we assumed it is from
   the apiserver. so we are gonna check the etcd records in the kube-apiserver.yaml manifest file.
-  ETCD CA certificate can be found in /etc/kubernetes/manifests/pki/etcd/ca.crt 
+  ETCD CA certificate can be found in /etc/kubernetes/manifests/pki/etcd/ca.crt
+
+  In general, any problem with authentication -> go check the certificates and their paths in the manifests files.
   
   <details>
   ```
