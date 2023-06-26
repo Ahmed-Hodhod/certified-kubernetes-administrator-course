@@ -48,6 +48,7 @@ In this section, we will take a look at TLS certificate creation in kubernetes
   ```
   
 #### We follow the same procedure to generate client certificate for all other components that access the kube-apiserver.
+- all components need a copy of the CA public key(root certificate) to validate the certificates. 
 
   ![crt1](../../images/crt1.PNG)
   
@@ -56,8 +57,12 @@ In this section, we will take a look at TLS certificate creation in kubernetes
   ![crt3](../../images/crt3.PNG)
    
   ![crt4](../../images/crt4.PNG)
+
+  the client certificates can be used instead of a username and a password.
+  
   
 ## Generating Server Certificates
+
 
 ## ETCD Server certificate
 
