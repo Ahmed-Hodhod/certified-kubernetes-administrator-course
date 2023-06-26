@@ -8,9 +8,8 @@ In this section, we will take a look how to view certificates in a kubernetes cl
  ![hrd](../../images/hrd.PNG)
 
  ![hrd1](../../images/hrd1.PNG)
- - You can also run this command instead: ```
-   $ kubectl describe pod kube-apiserver-controlplane -n kube-system
-   ```
+ - You can also run this command instead:
+   ` $ kubectl describe pod kube-apiserver-controlplane -n kube-system  `
 
  - To view the details of the certificate ( issuer and group and other information about a certain certificate)
  - decrypt the certificate 
