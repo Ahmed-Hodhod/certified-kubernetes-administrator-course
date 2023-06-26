@@ -10,6 +10,7 @@ In this section, we will take a look at TLS in kubernetes
   ![tls](../../images/tls.PNG)
   
 #### Let's look at the different components within the k8s cluster and identify the various servers and clients and who talks to whom.
+- K8S requires that you have at least one CA for the cluster. you can have another one for the etcd server. 
 
   ![certs](../../images/certs.PNG)
   
