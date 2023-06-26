@@ -85,8 +85,9 @@ Solutions to practice test - view certificates
   $ openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
   ```
   </details>
-  
-- Run the command 'openssl x509 -in /etc/kubernetes/pki/ca.crt -text' and look for validity
+
+   
+- Root Certificate:  'openssl x509 -in /etc/kubernetes/pki/ca.crt -text' and look for validity
   
   <details>
   ```
@@ -94,7 +95,17 @@ Solutions to practice test - view certificates
   ```
   </details>
   
-- Inspect the --cert-file option in the manifests file.
+- Problem: kubectl utility is not able to access kub-apiserver
+  You can't use kubectl now, so you should use docker instead
+  `docker ps -a | grep -i kube-apiserver`
+  `docker logs <container-id> `
+  after checking the logs, the kubeapiserver can't connect the etcd server running on port 2379 and this is because the certificate file could not be found
+  in the given directory.
+  So, you need to change the directory to the right one.
+  `cat \etc\kubernetes\manifests\etcd.yaml`
+
+  note : you can use crictl instead of docker based on the environment. 
+  Inspect the --cert-file option in the manifests file.
   
   <details>
   ```
@@ -102,7 +113,10 @@ Solutions to practice test - view certificates
   ```
   </details>
   
-- ETCD has its own CA. The right CA must be used for the ETCD-CA file in /etc/kubernetes/manifests/kube-apiserver.yaml. 
+- ETCD has its own CA. The right CA must be used for the ETCD-CA file in /etc/kubernetes/manifests/kube-apiserver.yaml.
+  after checking the logs from the containers, we found that a connection is rejected to the etcd server and we assumed it is from
+  the apiserver. so we are gonna check the etcd records in the kube-apiserver.yaml manifest file.
+  ETCD CA certificate can be found in /etc/kubernetes/manifests/pki/etcd/ca.crt 
   
   <details>
   ```
