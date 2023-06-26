@@ -34,6 +34,9 @@ In this section, we will take a look at kubeconfig in kubernetes
   ```
   
   ![kc6](../../images/kc6.PNG)
+To use that context, run the command: `kubectl config --kubeconfig=/root/my-kube-config use-context research`
+
+To know the current context, run the command: `kubectl config --kubeconfig=/root/my-kube-config current-context`
   
 - How do you update your current context? Or change the current context
   ```
