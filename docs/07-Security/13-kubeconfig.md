@@ -17,7 +17,7 @@ In this section, we will take a look at kubeconfig in kubernetes
 ## Kubeconfig File
 - The kubeconfig file has 3 sections
   - Clusters
-  - Contexts
+  - Contexts: to determine which users have access what clusters
   - USers
   
   ![kc4](../../images/kc4.PNG)
@@ -37,7 +37,7 @@ In this section, we will take a look at kubeconfig in kubernetes
   
 - How do you update your current context? Or change the current context
   ```
-  $ kubectl config view --kubeconfig=my-custom-config
+  $ kubectl config use-context pro-user@production
   ```
   
   ![kc7](../../images/kc7.PNG)
