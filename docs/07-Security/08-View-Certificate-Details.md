@@ -4,16 +4,24 @@
 In this section, we will take a look how to view certificates in a kubernetes cluster.
 
 ## View Certs 
+
  ![hrd](../../images/hrd.PNG)
 
  ![hrd1](../../images/hrd1.PNG)
- 
- - To view the details of the certificate
+ - You can also run this command instead: ```
+   $ kubectl describe pod kube-apiserver-controlplane -n kube-system
+   ```
+
+ - To view the details of the certificate ( issuer and group and other information about a certain certificate)
+ - decrypt the certificate 
    ```
    $ openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text -noout
    ```
    
    ![hrd2](../../images/hrd2.PNG)
+
+- to view all the configurations and everything about the etcd servers and their certificates
+   `kubectl describe pod etcd-controlplane -n kube-system`
    
 #### Follow the same procedure to identify information about of all the other certificates
 
