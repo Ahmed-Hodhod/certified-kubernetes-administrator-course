@@ -39,14 +39,27 @@ In this section, we will take a look at TLS Basics
   ![cert8](../../images/cert8.PNG)
   
   ![cert9](../../images/cert9.PNG)
+The CAs use their private keys to validate sign the certificates.
+The browser is built-in with the public keys of the CAs.
+If you want to issue certificates for sites and domain hosted privately within an organization, you can deploy a CA internally and setup its public key to all browsers within the organization. 
   
   ![cert10](../../images/cert10.PNG)
   
 ## Public Key Infrastructure
+- Trust Building exercise:
+  - the site sends generates a pair of keys and send its public key along with a certificate to a CA to sign it with their own private keys 
+  - when a user sends a request to the site, the site sends back its certificate signed by the CA
+  - the user validates the certifcate using the public keys of the CAs that are stored in the browser
+  - the user uses the public key sent with the certificate to encrypt a symmetic key and send it back to the site
+  - the site decrypts the symmetric key using its own private key
+  - the symmetric key is then used for communication
+  - a similar process happens on the client side to verity that he is who he is
+  - a client sends a certificate for signing and then send it to the site 
    
    ![pki](../../images/pki.PNG)
    
 ## Certificates naming convention
+- public and private keys are a pair of key. You can encrypt the data with any of them and decrypt the data with the other key. 
 
   ![cert11](../../images/cert11.PNG)
   
