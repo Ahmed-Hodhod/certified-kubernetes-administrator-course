@@ -11,12 +11,12 @@ In this section, we will take a look at how to manage certificates and certifica
    
   ![csr](../../images/csr.PNG)
    
-#### This certificate can then be extracted and shared with the user.
+#### This certificate can then be extracted and shared with the user ( if you want to add a new user to access your cluster ) 
 - A user first creates a key
   ```
   $ openssl genrsa -out jane.key 2048
   ```
-- Generates a CSR
+- The user sends the key to the admin and he sends a CRI for the new user 
   ```
   $ openssl req -new -key jane.key -subj "/CN=jane" -out jane.csr 
   ```
