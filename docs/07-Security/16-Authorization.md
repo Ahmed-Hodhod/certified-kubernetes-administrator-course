@@ -23,6 +23,8 @@ In this section, we will take a look at authorization in kubernetes
 ## Node Authorization
 
   ![node-auth](../../images/node-auth.png)
+  Any user that accesses the api server as part of the group system:node is give the same permisions as the kubelet. (this is access withing the cluster ) 
+  
   
 ## ABAC
 
