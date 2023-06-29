@@ -115,7 +115,10 @@ Solutions to the Practice Test Service Accounts
     1. Press Load Dashboard. It should now display the pod
 
 1.  <details>
+  You shouldn't have to copy and paste the token each time. The Dashboard application is programmed to read token from the secret mount location. However currently, the default service account is mounted. Update the deployment to use the newly created ServiceAccount.
+  
     <summary>Edit the deployment to change ServiceAccount from <b>default</b> to <b>dashboard-sa</b>.</summary>
+
 
     1. Use command `kubectl edit deployment web-dashboard`, which opens the running deployment in `vi`
     1. Move dowm to the deployment spec and insert the service account as shown:
