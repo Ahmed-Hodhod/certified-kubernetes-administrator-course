@@ -55,6 +55,12 @@ options edns0
 ```
 
 - To change the order of dns resolution, we need to do changes into the `/etc/nsswitch.conf` file.
+- NSS: Name Service Switch subsystem: It determines the order and sources of system databases and services used for various name resolutions, such as user and group lookups, hostname resolution, and more.
+- 
+Examples: Sample entries in /etc/nsswitch.conf:
+
+passwd: files ldap: Look up user accounts first in local files, then in LDAP.
+hosts: files dns: Resolve hostnames first using local files, then using DNS.
 
 ```
 $ cat /etc/nsswitch.conf
