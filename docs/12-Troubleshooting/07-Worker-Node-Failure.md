@@ -44,3 +44,8 @@
     ![cert](../../images/cert.PNG)
 
 
+    ** You can just ssh into the node and then read the logs.
+    If you suspect some service, check its status `systemctl status some-service`. This will contain all the files you want to use to fix the error.
+    
+
+
